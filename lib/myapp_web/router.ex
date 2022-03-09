@@ -14,6 +14,24 @@ defmodule MyappWeb.Router do
     plug :accepts, ["json"]
   end
 
+  pipeline :auth do
+    plug Myapp.Guardian.AuthPipeline
+  end
+
+  scope "/api", MyappWeb do
+    pipe_through [:api, :auth]
+
+    post "/users", UserController, :register
+    post "/sessions/new", SessionController, :new
+  end
+
+  scope "/api", MyappWeb do
+    pipe_through [:api, :auth]
+
+    post "/session/refresh", SessionController, :refresh
+    post "/sessions/delete", SessionController, :delete
+  end
+
   scope "/", MyappWeb do
     pipe_through :browser
 

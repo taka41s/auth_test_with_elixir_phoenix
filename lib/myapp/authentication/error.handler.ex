@@ -1,4 +1,4 @@
-defmodule myapp.Guardian.AutoErrorHandler do
+defmodule Myapp.Guardian.AuthErrorHandler do
   import PLug.conn
 
   @behaviour Guardian.Plug.ErrorHandler

@@ -4,6 +4,8 @@ defmodule MyappWeb.UserController do
   alias Myapp.Accounts
   alias Myapp.Accounts.User
 
+  action_fallback MyappWeb.FallbackController
+
   def register(conn, %{"user" => user_params}) do
     with {:ok, user} <- Accounts.create_user(user_params) do
       conn

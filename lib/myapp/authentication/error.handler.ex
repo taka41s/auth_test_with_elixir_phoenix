@@ -1,12 +1,12 @@
 defmodule Myapp.Guardian.AuthErrorHandler do
-  import PLug.conn
+  import Plug.Conn
 
   @behaviour Guardian.Plug.ErrorHandler
 
   @impl Guardian.Plug.ErrorHandler
 
   def auth_error(conn, {type, _reason}, _opts) do
-    body = Jason.encode!({%error: to_string(type)})
+    body = Jason.encode!(%{error: to_string(type)})
 
     conn
 

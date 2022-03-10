@@ -36,7 +36,7 @@ defmodule MyappWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :index
-    post "users", UserController, :register
+    post "/users", UserController, :register
   end
 
   # Other scopes may use custom stacks.

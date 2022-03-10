@@ -27,7 +27,7 @@ defmodule Myapp.Accounts do
     User |> Repo.get!(id)
   end
 
-  def authentication_user(email, password) do
+  def authenticate_user(email, password) do
     with {:ok, user} <- get_by_email(email) do
       case validate_password(password, user.password) do
         false -> {:error, :unauthorized}
